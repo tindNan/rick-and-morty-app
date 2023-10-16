@@ -37,8 +37,21 @@ export default async function Home({ searchParams }: SearchParams) {
   const next = getPageNumber(info?.next);
 
   return (
-    <div>
-      <div className="overflow-x-auto">
+    <div className="px-6 sm:px-8">
+      <h1 className="text-5xl text-black py-4">Locations</h1>
+      <div className="flex justify-end gap-4 mb-4">
+        {previous ? (
+          <Link href={`/?page=${previous}`} className="btn btn-outline">
+            Previous
+          </Link>
+        ) : null}
+        {next ? (
+          <Link href={`/?page=${next}`} className="btn btn-outline">
+            Next
+          </Link>
+        ) : null}
+      </div>
+      <div className="overflow-x-auto card shadow-xl bg-base-100 h-5/6">
         <table className="table table-pin-rows">
           <thead>
             <tr>
@@ -65,18 +78,6 @@ export default async function Home({ searchParams }: SearchParams) {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="flex justify-end gap-4">
-        {previous ? (
-          <Link href={`/?page=${previous}`} className="btn btn-outline">
-            Previous
-          </Link>
-        ) : null}
-        {next ? (
-          <Link href={`/?page=${next}`} className="btn btn-outline">
-            Next
-          </Link>
-        ) : null}
       </div>
     </div>
   );
