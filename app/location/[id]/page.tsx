@@ -64,11 +64,17 @@ export default async function LocationDetails(props: {
 
   return (
     <div>
-      <p>here are the location details:</p>
-      <p>Name: {location.name}</p>
-      <p>Type: {location.type}</p>
-      <p>Dimension: {location.dimension}</p>
-      <p>Number of: residents:{location.residents.length}</p>
+      <div className="hero bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-md space-y-4">
+            <h1 className="text-5xl font-bold">{location.name}</h1>
+            <p>Name: {location.name}</p>
+            <p>Type: {location.type}</p>
+            <p>Dimension: {location.dimension}</p>
+            <p>Number of: residents:{location.residents.length}</p>
+          </div>
+        </div>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
         {location.residents.map((url) => (
           <CharacterCard key={url} id={url?.split("/")?.at(-1)} />

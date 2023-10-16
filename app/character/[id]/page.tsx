@@ -35,6 +35,9 @@ export default async function CharacterPage(props: { params: { id: string } }) {
             <p className="text-xl">Gender: {characterInfo.gender}</p>
             <p className="text-xl">Origin: {characterInfo.origin.name}</p>
             <p className="text-xl">Location: {characterInfo.location.name}</p>
+            <p className="text-xl">
+              Number of episodes: {characterInfo.episode.length}
+            </p>
           </div>
         </div>
       </div>
