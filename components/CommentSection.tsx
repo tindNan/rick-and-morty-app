@@ -59,7 +59,7 @@ export default function CommentSection() {
         {comments.map((c, i) => (
           <div key={i} className="space-y-0.5">
             <p className="text-xs text-slate-300">
-              Created at {new Date(c.createdAt).toLocaleDateString()}
+              Created at {new Date(c.createdAt).toLocaleString()}
             </p>
             <p>{c.comment}</p>
           </div>
