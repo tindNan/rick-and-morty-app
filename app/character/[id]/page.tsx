@@ -17,7 +17,7 @@ export default async function CharacterPage(props: { params: { id: string } }) {
   const characterInfo = await getCharacterInfoAndComments(props.params.id);
 
   return (
-    <div className="flex flex-col items-center w-full sm:px-32">
+    <div className="flex flex-col items-center w-full px-6 sm:px-32 pb-8">
       <div className="hero bg-base-200 rounded">
         <div className="hero-content flex-col sm:flex-row">
           <div className="w-80 h-80">
@@ -31,10 +31,10 @@ export default async function CharacterPage(props: { params: { id: string } }) {
           <div className="space-y-6">
             <h1 className="text-5xl font-bold">{characterInfo.name}</h1>
             <p className="text-xl">Status: {characterInfo.status}</p>
-            <p>Species: {characterInfo.species}</p>
-            <p>Gender: {characterInfo.gender}</p>
-            <p>Origin: {characterInfo.origin.name}</p>
-            <p>Location: {characterInfo.location.name}</p>
+            <p className="text-xl">Species: {characterInfo.species}</p>
+            <p className="text-xl">Gender: {characterInfo.gender}</p>
+            <p className="text-xl">Origin: {characterInfo.origin.name}</p>
+            <p className="text-xl">Location: {characterInfo.location.name}</p>
           </div>
         </div>
       </div>
