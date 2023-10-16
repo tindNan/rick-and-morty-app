@@ -32,11 +32,11 @@ The decisions below follow from the initial requirements. In a real world produc
 | Use the rick and morty javascript client        | <ol> <li>This gives a fully typed client hence making it easy to prototype without having to manually write types</li> <li>Looking at the source code, the library uses `fetch` so we can leverage the monkey-patched fetch library in nextjs</li> </ol>                                                                                 |                                                                                                                                                                                                            |                                                                               |
 | Saving notes in localStorage                    | This is a fast way to prototype the save functionality given that this was an option as per requirements                                                                                                                                                                                                                                 | If we need to persist the data across sessions/browsers and also allow users to view other user's notes, then we would need a persistent storage solution e.g. SQL/NOSQL database, file storage e.t.c      |                                                                               |
 | Lack of user authentication/persistent sessions | We remove one chunk from our overall architecture i.e. the need for a database. This allows for speedy prototyping                                                                                                                                                                                                                       | This cannot work if it's clear that the application needs to store persistent data                                                                                                                         |                                                                               |
+| Coupling application state with URL state       | Makes it easier to verify the UI state across browsers                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                            |                                                                               |
 
 ## Initial wireframes
-![Wireframe](initial%20wireframe.png)
 
-<!-- TODO: attach link to wireframes -->
+![Wireframe](initial%20wireframe.png)
 
 ## REST VS GRAPHQL
 
@@ -47,9 +47,9 @@ I chose to go with the REST pattern because:
 3. By leveraging server side components, we can reduce processing time needed in the client for any follow up queries required to construct all the info for an entity e.g fetching characters in a location.
 4. I am more comfortable with working with REST
 
-However, the pages where I think graphql would offer improvements are the entity pages i.e clicking on a single location/user/episode. This is because the REST responses force us to make additional REST queries in order to fetch other info related to that entity. The problems might not be apparently obvious at this scale since the pages are server rendered but this would be a potential place for optimisation.
+However, the pages where I think graphql would offer improvements are the entity pages i.e clicking on a single location/user/episode. This is because the REST responses force us to make additional REST queries in order to fetch other info related to that entity e.g to get the names of the episodes, we have to make an additional REST call, yet with graphQL this would be just one call. The problems might not be apparently obvious at this scale since the pages are server rendered but this would be a potential place for optimisation.
 
-I was also keen to ensure that we use the app's URL as the central source of state so that we can easily share links and guarantee a different users will see the same content. I found it easier to sync this up with REST, but I am certain with more research I could have made it work with GRAPHQL.
+I was also keen to ensure that we use the app's URL as the central source of state so that we can easily share links and guarantee different users will see the same content. I found it easier to sync this up with REST, but I am certain with more research I could have made it work with GRAPHQL.
 
 ## Deployment
 
