@@ -34,6 +34,7 @@ The decisions below follow from the initial requirements. In a real world produc
 | Lack of user authentication/persistent sessions | We remove one chunk from our overall architecture i.e. the need for a database. This allows for speedy prototyping                                                                                                                                                                                                                       | This cannot work if it's clear that the application needs to store persistent data                                                                                                                         |                                                                               |
 
 ## Initial wireframes
+![Wireframe](initial%20wireframe.png)
 
 <!-- TODO: attach link to wireframes -->
 
