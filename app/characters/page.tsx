@@ -65,7 +65,7 @@ export default async function Characters({ searchParams }: SearchParams) {
                 <Link href="">{r.location.name}</Link>
               </td>
               <td>
-                <Link href={`/characters/${r.id}`} className="btn">
+                <Link href={`/character/${r.id}`} className="btn">
                   View more information &rarr;
                 </Link>
               </td>
