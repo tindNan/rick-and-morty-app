@@ -11,7 +11,9 @@ export default function CommentSection() {
   const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
-    const fetchedComments = localStorage.getItem("comments");
+    const fetchedComments = localStorage.getItem(
+      `${window.location.pathname}/comments`,
+    );
     if (fetchedComments) {
       const parsed: Comment[] = JSON.parse(fetchedComments);
       parsed.forEach((c) => {
@@ -23,7 +25,10 @@ export default function CommentSection() {
 
   useEffect(() => {
     if (comments.length) {
-      localStorage.setItem("comments", JSON.stringify(comments));
+      localStorage.setItem(
+        `${window.location.pathname}/comments`,
+        JSON.stringify(comments),
+      );
     }
   }, [comments]);
 
