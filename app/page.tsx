@@ -35,7 +35,6 @@ export default async function Home({ searchParams }: SearchParams) {
   const { results, info } = response.data;
   const previous = getPageNumber(info?.prev);
   const next = getPageNumber(info?.next);
-  console.log(info);
 
   return (
     <div>

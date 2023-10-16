@@ -2,24 +2,45 @@ import Image from "next/image";
 import Link from "next/link";
 import { getCharacters } from "rickmortyapi";
 
-async function getAllCharacters() {
-  const res = await getCharacters();
+type SearchParams = {
+  searchParams?: {
+    page: string;
+  };
+};
 
-  if (res.status !== 200) {
-    throw new Error("failed to fetch rick and morty data");
-  }
+function getPageNumber(url: string | null | undefined) {
+  if (!url) return null;
 
-  return res.data;
+  const [, pagePart] = url.split("?");
+  const [, pageAsString] = pagePart.split("=");
+
+  return parseInt(pageAsString);
 }
 
-export default async function Characters() {
-  const characters = await getAllCharacters();
-  const { info, results } = characters;
+export default async function Characters({ searchParams }: SearchParams) {
+  let page = 1;
+  if (searchParams?.page) {
+    const parsed = parseInt(searchParams.page);
+    page = parsed <= 1 ? 1 : parsed;
+  }
+
+  const response = await getCharacters({ page });
+
+  if (response.status !== 200) {
+    return (
+      <div className="text-red">
+        Error while fetching locations, please try again
+      </div>
+    );
+  }
+
+  const { info, results } = response.data
+  const previous = getPageNumber(info?.prev);
+  const next = getPageNumber(info?.next);
 
   return (
     <div className="overflow-x-auto">
       <table className="table">
-        {/* head */}
         <thead>
           <tr>
             <th>Name</th>
@@ -52,6 +73,18 @@ export default async function Characters() {
           ))}
         </tbody>
       </table>
+      <div className="flex justify-end gap-4">
+        {previous ? (
+          <Link href={`/?page=${previous}`} className="btn btn-outline">
+            Previous
+          </Link>
+        ) : null}
+        {next ? (
+          <Link href={`/?page=${next}`} className="btn btn-outline">
+            Next
+          </Link>
+        ) : null}
+      </div>
     </div>
   );
 }
