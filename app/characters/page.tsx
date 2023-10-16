@@ -44,8 +44,8 @@ export default async function Characters() {
                 <Link href="">{r.location.name}</Link>
               </td>
               <td>
-                <Link href={`/characters/${r.id}`} className="font-bold">
-                  View more information
+                <Link href={`/characters/${r.id}`} className="btn">
+                  View more information &rarr;
                 </Link>
               </td>
             </tr>

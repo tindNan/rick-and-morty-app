@@ -36,7 +36,7 @@ export default async function Home() {
                 <td>{r.dimension}</td>
                 <td>{r.type}</td>
                 <td>
-                  <Link href={`/location/${r.id}`}>View more </Link>
+                  <Link href={`/location/${r.id}`} className="btn">View more &rarr; </Link>
                 </td>
               </tr>
             ))}

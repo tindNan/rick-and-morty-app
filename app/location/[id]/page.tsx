@@ -44,7 +44,7 @@ async function CharacterCard(props: { id?: string }) {
         <p>Gender: {data.gender}</p>
         <div className="card-actions justify-end">
           <Link href={`/character/${data.id}`} className="btn btn-primary">
-            View more
+            View more &rarr;
           </Link>
         </div>
       </div>
