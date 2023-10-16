@@ -1,8 +1,28 @@
 import Link from "next/link";
 import { getLocations } from "rickmortyapi";
 
-export default async function Home() {
-  const response = await getLocations();
+type SearchParams = {
+  searchParams?: {
+    page: string;
+  };
+};
+
+function getPageNumber(url: string | null | undefined) {
+  if (!url) return null;
+
+  const [, pagePart] = url.split("?");
+  const [, pageAsString] = pagePart.split("=");
+
+  return parseInt(pageAsString);
+}
+
+export default async function Home({ searchParams }: SearchParams) {
+  let page = 1;
+  if (searchParams?.page) {
+    const parsed = parseInt(searchParams.page);
+    page = parsed <= 1 ? 1 : parsed;
+  }
+  const response = await getLocations({ page });
 
   if (response.status !== 200) {
     return (
@@ -12,7 +32,10 @@ export default async function Home() {
     );
   }
 
-  const { results } = response.data;
+  const { results, info } = response.data;
+  const previous = getPageNumber(info?.prev);
+  const next = getPageNumber(info?.next);
+  console.log(info);
 
   return (
     <div>
@@ -36,7 +59,9 @@ export default async function Home() {
                 <td>{r.dimension}</td>
                 <td>{r.type}</td>
                 <td>
-                  <Link href={`/location/${r.id}`} className="btn">View more &rarr; </Link>
+                  <Link href={`/location/${r.id}`} className="btn">
+                    View more &rarr;{" "}
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -44,8 +69,16 @@ export default async function Home() {
         </table>
       </div>
       <div className="flex justify-end gap-4">
-        <button className="btn btn-outline">Previous page</button>
-        <button className="btn btn-outline">Next</button>
+        {previous ? (
+          <Link href={`/?page=${previous}`} className="btn btn-outline">
+            Previous
+          </Link>
+        ) : null}
+        {next ? (
+          <Link href={`/?page=${next}`} className="btn btn-outline">
+            Next
+          </Link>
+        ) : null}
       </div>
     </div>
   );
