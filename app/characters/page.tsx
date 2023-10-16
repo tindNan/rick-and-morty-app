@@ -12,30 +12,7 @@ async function getAllCharacters() {
   return res.data;
 }
 
-function CharacterCard({
-  name,
-  locationName,
-  imageSrc,
-  id,
-}: {
-  name: string;
-  locationName: string;
-  imageSrc: string;
-  id: string | number;
-}) {
-  return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
-      <Image src={imageSrc} alt={`${name}'s avatar`} height={150} width={150} />
-      <div className="px-6 py-4">
-        <p>{name}</p>
-        <p>{locationName}</p>
-      </div>
-      <Link href={`characters/${id}`}>View more information</Link>
-    </div>
-  );
-}
-
-export default async function Stuff() {
+export default async function Characters() {
   const characters = await getAllCharacters();
   const { info, results } = characters;
 
@@ -54,12 +31,14 @@ export default async function Stuff() {
           {results?.map((r) => (
             <tr key={r.id}>
               <td>
-                <Image
-                  src={r.image}
-                  alt={`${r.name}'s avatar`}
-                  height={150}
-                  width={150}
-                />
+                <div className="mask mask-squircle h-24 w-24">
+                  <Image
+                    src={r.image}
+                    alt={`${r.name}'s avatar`}
+                    height={96}
+                    width={96}
+                  />
+                </div>
               </td>
               <td>
                 <Link href="">{r.location.name}</Link>
