@@ -59,6 +59,8 @@ export default async function Characters({ searchParams }: SearchParams) {
             <tr>
               <th>Name</th>
               <th>Location</th>
+              <th>Gender</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -78,6 +80,8 @@ export default async function Characters({ searchParams }: SearchParams) {
                 <td>
                   <Link href="">{r.location.name}</Link>
                 </td>
+                <td>{r.gender}</td>
+                <td>{r.status}</td>
                 <td>
                   <Link href={`/character/${r.id}`} className="btn">
                     View more information &rarr;
