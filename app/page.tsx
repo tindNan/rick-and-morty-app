@@ -40,7 +40,6 @@ export default async function Home({ searchParams }: SearchParams) {
     <div>
       <div className="overflow-x-auto">
         <table className="table table-pin-rows">
-          {/* head */}
           <thead>
             <tr>
               <th>Name</th>
