@@ -77,10 +77,7 @@ export default async function LocationDetails(props: {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
         {location.residents.map((url) => (
-          <>
-            {/* @ts-expect-error Server Component */}
-            <CharacterCard key={url} id={url?.split("/")?.at(-1)} />
-          </>
+          <CharacterCard key={url} id={url?.split("/")?.at(-1)} />
         ))}
       </div>
     </div>
