@@ -34,7 +34,7 @@ export default async function Characters({ searchParams }: SearchParams) {
     );
   }
 
-  const { info, results } = response.data
+  const { info, results } = response.data;
   const previous = getPageNumber(info?.prev);
   const next = getPageNumber(info?.next);
 
