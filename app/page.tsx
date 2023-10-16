@@ -35,7 +35,9 @@ export default async function Home() {
                 <td>{r.residents.length}</td>
                 <td>{r.dimension}</td>
                 <td>{r.type}</td>
-                <td><Link href={`/location/${r.id}`}>View more </Link></td>
+                <td>
+                  <Link href={`/location/${r.id}`}>View more </Link>
+                </td>
               </tr>
             ))}
           </tbody>

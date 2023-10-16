@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Rick and morty app",
-  description: "A simple application to allow users to interact with the rick and morty world",
+  description:
+    "A simple application to allow users to interact with the rick and morty world",
 };
 
 export default function RootLayout({
